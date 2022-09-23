@@ -1,0 +1,208 @@
+{% extends 'mygoddess/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Trisha Amman Temple {% endblock %}
+{% block content %}
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<div class="text-primary alert" style="background-image: url('http://127.0.0.1:8000/static/background_images/trisha15.jpg');">
+    <div class="row">
+        <div class="col-5 rounded border p-3" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_10.jpg');">
+            <p id="message"></p>
+            <h3 clss="p-2">Book Yourself for Serving Goddess TrishaDevi</h3>
+            <form method="POST" enctype="multipart/form-data" id="goddessForm">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" id="book" class="btn btn-success mt-2" value="Book">
+            </form>
+            <p>Register As Devotee <a href="{% url 'devotees' %}">Devotee</a></p>
+        </div>
+        <div class="col-6 text-success mx-4" style="background-image: url('http://127.0.0.1:8000/static/background_images/god_01.jpg');border-style:groove;">
+            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">S.no</th>
+                <th scope="col">Devotee</th>
+                <th scope="col">Seva</th>
+                <th scope="col">Date</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seva in sevas %}
+            <tr>
+               <th scope="row">{{forloop.counter}}</th>
+                <td class="devotee">{{seva.devotee}}</td>
+                <td class="name">{{seva.name}}</td>
+                <td class="date">{{seva.date}}</td>
+                <td><button class="btn btn-secondary edit" data="{{seva.id}}">Edit</button></td>
+              <td><button class="btn btn-danger delete" data="{{seva.id}}">Delete</button></td>
+
+            </tr>
+                {% endfor %}
+    </table>
+        </div>
+    </div>
+</div>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script>
+ $(document).ready( function () {
+    $("#myTable").DataTable();
+} );
+
+function showSevas(data){
+ $("#myTable tbody").empty()
+  for(i=0;i<data.length;i++){
+  $("#myTable tbody").append(
+    `
+    <tr>
+  <th scope="row">${i+1}</th>
+  <td class="devotee">${data[i].devotee_id}</td>
+  <td class="name">${data[i].name}</td>
+  <td class="date">${data[i].date}</td>
+  <td><button class="btn btn-secondary edit" data="${data[i].id}">Edit</button></td>
+  <td><button class="btn btn-danger delete" data="${data[i].id}">Delete</button></td>
+ </tr>
+    `
+  )
+}
+}
+
+
+
+let activeItem=null;
+function editItem(item){
+var devotee = item.find(".devotee").text()
+var name = item.find(".name").text()
+var date = item.find(".date").text()
+var edit_id = item.find('.edit').attr("data")
+console.log(devotee,name,date,edit_id)
+$("#id_devotee").val(devotee)
+$("#id_name").val(name)
+$("#id_date").val(date)
+$("#book").val("Update")
+$("#book").removeClass("bg-success")
+$("#book").addClass("bg-warning")
+activeItem = edit_id
+}
+
+function deleteSeva(delete_id){
+  var con=confirm("Are You Sure Want To Delete?")
+  if(con==true){
+
+    $.ajax({
+    type:"GET",
+    url:"{% url 'seva_delete' %}",
+    data:{
+      'delete_id':delete_id
+    },
+    success:function(response){
+      console.log(response.sevas)
+      showSevas(response.sevas)
+
+      if(response.status_message=="Seva Deleted Successfully!"){
+        $("#message").text(response.status_message)
+              $("#message").removeClass("bg-success")
+              $("#message").removeClass("bg-warning")
+              $("#message").addClass("bg-danger")
+      }
+        $(".delete").click(function(){
+              var delete_id=$(this).attr("data")
+              console.log(delete_id)
+              deleteSeva(delete_id)
+            })
+        $(".edit").click(function(){
+            var item=$(this).attr("data")
+            editItem(item)
+            })
+    }
+  })
+
+  }
+
+}
+
+
+
+
+
+$(document).on("submit","#goddessForm",function(e){
+e.preventDefault();
+var devotee = $("#id_devotee").val();
+var name =$("#id_name").val()
+var date = $("#id_date").val()
+var url = "{% url 'goddess_temple' %}";
+var data = {
+'devotee':devotee,
+'name': name,
+'date':date,
+csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+};
+
+ if(activeItem != null){
+      url="{% url 'seva_edit' %}"
+      data['edit_id']=activeItem
+      console.log(url)
+    }
+
+$.ajax({
+type:"POST",
+url:url,
+data:data,
+success:function(response){
+console.log(response.status)
+data = response.sevas
+$("#message").addClass("p-2")
+$("#message").text(response.status_message)
+console.log(data)
+if(response.status == "1"){
+showSevas(data)
+$("#message").removeClass("bg-danger")
+$("#message").removeClass("bg-warning")
+$("#message").addClass("bg-success")
+}else{
+$("#message").removeClass("bg-success")
+$("#message").removeClass("bg-warning")
+$("#message").addClass("bg-danger")
+}
+
+$('.edit').click(function(){
+var item = $(this).closest('tr')
+editItem(item)
+})
+$('.delete').click(function(){
+var delete_id= $(this).attr("data")
+deleteSeva(delete_id)
+})
+
+if(response.status_message=="Seva Updated Successfully!"){
+              $("#message").text(response.status_message)
+              $("#message").removeClass("bg-success")
+              $("#message").removeClass("bg-danger")
+              $("#message").addClass("bg-warning")
+              $("#book").val('Book')
+              $("#book").removeClass("bg-warning")
+              $("#book").addClass("bg-success")
+              activeItem=null
+            }
+
+
+}
+})
+})
+$('.edit').click(function(){
+var item = $(this).closest('tr')
+editItem(item)
+})
+$('.delete').click(function(){
+var delete_id = $(this).attr("data")
+deleteSeva(delete_id)
+})
+</script>
+{% endblock %}
+
+

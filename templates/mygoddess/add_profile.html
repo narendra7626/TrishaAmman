@@ -1,0 +1,52 @@
+{% extends 'mygoddess/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{%block title %}Trisha Amman Temple{% endblock %}
+{%block content %}
+<div class="container-fluid" style="color:white;background-image: url('http://127.0.0.1:8000/static/background_images/trisha300.jpg')">
+    <div class="text-white alert">
+        <h4 align="center">త్రిషా దేవత పాదదాసులు కావడానికి అదనపు వివరాలు నమోదు చేయండి </h4>
+        <div class="col-5 p-4 border rounded offset-3 mt-3">
+           
+            <p class="text-white" id="message"></p>
+            <h3 class="p-3">త్రిషా దేవతకి అంకితమవ్వండి</h3>
+            <form method="POST" enctype="multipart/form-data" id="profileForm">
+                {% csrf_token %}
+                {{ profile_form|crispy }}
+                <input type="submit" class="btn btn-success m-2">
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $("#profileForm").submit(function(e){
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+        $.ajax({
+            url:"{% url 'add_profile' %}",
+            type:"POST",
+            data:formData,
+            success:function(response){
+                console.log(response.status)
+                $("#message").text(response.status)
+                $("#message").addClass("p-2")
+                if(response.status == "అభినందనలు మీరు పూర్తిగా త్రిషాదేవి పాదదాసులయ్యారు!"){
+                    $("#message").removeClass("bg-danger")
+                    $("#message").addClass("bg-success")
+                    window.location = "{% url 'home' %}"
+
+                }else{
+                    $("#message").removeClass("bg-success")
+                    $("#message").addClass("bg-danger")
+                }
+            },
+            cache:false,
+            contentType:false,
+            processData:false
+        });
+    });
+
+</script>
+{% endblock %}

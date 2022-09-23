@@ -1,0 +1,100 @@
+{% extends 'mygoddess/base.html' %}
+{% load static %}
+{% block title %}Trisha Amman Temple {% endblock %}
+{% block content %}
+<div class="text-white alert" style="color:white;background-image: url('http://127.0.0.1:8000/static/background_images/trisha300.jpg')">
+    <h4 align="center">త్రిషా అమ్మవారికి భక్తుడయ్యే అదృష్టాన్ని పొందండి</h4>
+    <div class="border p-4 col-4 offset-4 mt-3 rounded" style="background-image: url('http://127.0.0.1:8000/static/background_images/devi.jpg')">
+        {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <li id="error_text" {% if message.tags %} class="bg-{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+        <p class="text-white" id="message"></p>
+        <h3 class="p-3">Became a GoddessTrisha Amman Devoteee</h3>
+        <form method="POST" id="signupForm" enctype="multipart/form-data" class="m-3">
+            {% csrf_token %}
+            <table class="table" style="color:white;font-style:bold;">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="post" name="name" id="id_name" placeholder="Enter Name" value="{{name}}"> </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" id="id_email" placeholder="@trishadevotee.com" value="{{email}}"> </td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="post" name="username" id="id_username" placeholder="Enter Username" value="{{username}}"> </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" id="id_password" placeholder="Enter Password" value="{{password}}"> </td>
+                </tr>
+                <tr>
+                    <td>ConfirmPassword</td>
+                    <td><input type="post" name="re_password" id="id_re_password" placeholder="ReEnter Password" value="{{re_password}}"> </td>
+                </tr>
+                <tr>
+                    <td style="color:blue;font-size:20;font-style:bold;">Do You Want to Live as a Devotee of GoddessTrisha Amman?</td>
+                    <td><input type="checkbox" name="check" value="t"  id="id_checkbox"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="btn btn-success" value="Signup"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+  function Check(id) {
+        var chkPassport = document.getElementById(id);
+        if (chkPassport.checked) {
+                return "True"
+        } else {
+
+                return "False"
+        }
+    }
+    $(document).on('submit','#signupForm',function(e){
+    e.preventDefault();
+    var name = $("#id_name").val()
+    var email = $("#id_email").val()
+    var username = $("#id_username").val()
+    var password = $("#id_password").val()
+    var re_password = $("#id_re_password").val()
+    var check = Check("id_checkbox")
+    $.ajax({
+    type:"POST",
+    url:"{% url 'signup' %}",
+    data:{'name':name,'email':email,'username':username,
+    'password':password,'re_password':re_password,'check':check,
+    csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+    },
+    success:function(response){
+    console.log(check)
+    var message = $(response).find("#error_text")
+    var message_class =  message.attr("class")
+    console.log(message.text())
+    $("#message").text(message.text())
+    $("#message").addClass("p-2")
+    if (message.text() == "మీరు అదృష్టవంతులు కావున త్రిషా అమ్మవారికి భక్తులయ్యారు"){
+        $("#message").removeClass("bg-danger")
+        $("#message").addClass("bg-success")
+        window.location = "{% url 'add_profile' %}"
+    }else{
+        $("#message").removeClass("bg-success")
+        $("#message").addClass("bg-danger")
+    }
+    
+    }
+    })
+    })
+</script>
+{% endblock %}

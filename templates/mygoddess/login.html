@@ -1,0 +1,63 @@
+{% extends 'mygoddess/base.html' %}
+{% load static %}
+{% block title %}Trisha Amman Temple {% endblock %}
+{% block content %}
+<div class="text-white alert" style="color:white;background-image: url('http://127.0.0.1:8000/static/background_images/god_200.jpeg')">
+    <h4 align="center">త్రిషా అమ్మవారి ఆలయంలోకి ప్రవేశించండి</h4>
+    <div class="border p-4 col-6 offset-4 mt-3 rounded" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_11.jpg')">
+        <p class="text-white" id="message"></p>
+        <h3 class="p-3">Login to Pray GoddessTrisha Amman</h3>
+        <form method="POST" id="loginForm" class="m-3">
+            {% csrf_token %}
+            <table class="table" style="color:white;font-style:bold;">
+                <tr>
+                    <td>Username</td>
+                    <td><input type="post" name="username" id="id_username" placeholder="Enter Username or Email"> </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" id="id_password" placeholder="Enter Password"> </td>
+                </tr>
+                <tr>
+                    <td>
+                       <input type="submit" value="Login" class="btn btn-success">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).on('submit','#loginForm',function(e){
+    e.preventDefault();
+    var username =  $("#id_username").val()
+    var password =  $("#id_password").val()
+    $.ajax({
+    type:'POST',
+    url:"{% url 'login' %}",
+    data:{'username':username,
+    'password':password,
+    csrfmiddlewaretoken:$("input[name=csrfmiddlewaretoken]").val()
+    },
+    success:function(response){
+    console.log(response.status)
+    $("#message").text(response.status)
+    $("#message").addClass("p-2")
+    if(response.status == "Login Successful!"){
+    $("#message").removeClass("bg-danger")
+    $("#message").addClass("bg-success")
+    window.location = "{% url 'home' %}"
+    }else{
+    $("#message").removeClass("bg-success")
+    $("#message").addClass("bg-danger")
+    $()
+    }
+    }
+    })
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'mygoddess/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title %}Trisha Amman Temple{% endblock %}
+{% block content %}
+<div class="container-fluid" style="color:white;background-image:url('http://127.0.0.1:8000/static/background_images/trisha97.jpg')">
+    <div class="text-white alert">
+        <div class="row">
+            <div class="col-md-3">
+                {%if profile.image %}
+                <img src="{{profile.image.url}}" width="70%" height="90%" alt="{{profile.slave.first_name}}">
+                <a href="{% url 'slave_pics' profile.id %}">{{profile.slave.username|title}}@TrishaSlave</a>
+                {% else %}
+                <i class="fa fa-user"></i>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+               <table class="table">
+                   <tr>
+                    <th style="color:brown;">Slave</th>
+                    <td><a href="{% url 'slave_pics' profile.id %}">{{profile.slave.first_name}}</a></th>
+                   </tr>
+                   <tr>
+                    <th style="color:brown;">Gender</th>
+                    <td style="color:white;">{{profile.gender|title}}</td>
+                   </tr>
+                   <tr>
+                       <th style="color:brown;">Experience For Serving as Goddess Trisha:</th>
+                       <td style="color:white;">{{profile.experience}}yrs</td>
+                   </tr>
+                   <tr>
+                       <th style="color:brown;">About:</th>
+                       <td style="color:white;">I am proud to be a being Goddess Trisha Amman Slave,I feel it is a 
+                           Wonderful Opportunity to serve her.Jai Bhagawathi Trisha Amman jai!
+                       </td>
+                   </tr>
+                   
+               </table>
+            </div>
+            <div class="col-md-3 border rounded">
+                <p id="message" class="text-white m-2"></p>
+                <h5 class="text-white m-2">Upload Slave {{profile.slave|title}} Pics</h5>
+                <form method="POST" id ='trishaslaveform' enctype="multipart/form-data" class="m-3">
+                    {% csrf_token %}
+                    {{trisha_slave_form|crispy}}
+                    <input type="submit" class="btn btn-success mt-2" value="Upload">
+                </form> 
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$("#trishaslaveform").submit(function(e){
+   e.preventDefault();
+   $form = $(this)
+   var formData = new FormData(this)
+   $.ajax({
+            url:'',
+            type:"POST",
+            data:formData,
+            success:function(response){
+                console.log(response.status)
+                $("#message").text(response.status)
+                $("#message").addClass("p-2")
+                if(response.status == "Uploaded Successfully!"){
+                    $("#message").removeClass("bg-danger")
+                    $("#message").addClass("bg-success")
+
+                }else{
+                    $("#message").removeClass("bg-success")
+                    $("#message").addClass("bg-danger")
+                }
+            },
+            cache:false,
+            contentType:false,
+            processData:false
+        });
+});
+</script>
+{% endblock %}

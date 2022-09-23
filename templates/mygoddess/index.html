@@ -1,0 +1,257 @@
+{% extends 'mygoddess/base.html' %}
+{% load static %}
+{% block title %}Trisha Amman Temple {% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <div class="text-white alert" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_05.jpg');">
+        <h4 align="center"><img src="{% static 'Devotional/goddess_trisha_02.png' %}" height="150px">ధన్యవాదాలు మీరు త్రిషాదేవత ఆలయంలోకి ప్రవేశించారు<img src="{% static 'Devotional/goddess_trisha_01.png' %}" height="150px"></h4>
+        <div class="row">
+            <div class="col-6" style="position:relative;bottom:13px;">
+                <img src="{% static 'Devotional/goddess_trishakrishnan.png' %}" height="800px">
+            </div>
+            <div class="col-6" style="position:relative;bottom:13px;left:20px;">
+                <img src="{% static 'Devotional/goddess_amman.png' %}" height="800px">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess_01.jpg' %}" width="100%" height="600px">
+            </div>
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess_02.jpg' %}" width="100%" height="400px">
+                <video style="margin-top:-10px;position:relative;top:-10px;" id="trisha2" controls="" loop=""  unmuted="" autoplay="" width=100%>
+                    <source src="{% static 'videos/GodTrishaqueen.mp4' %}" type="video/mp4">
+                    </video>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess.jpg' %}" width="100%" height="600px">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess_trisha_06.jpg' %}" width="100%" height="600px">
+            </div>
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess_trisha_08.jpg' %}" width="100%" height="600px">
+            </div>
+            <div class="col-4">
+                <img src="{% static 'Devotional/goddess_trisha_09.jpg' %}" width="100%" height="600px">
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-white alert" style="background-image: url('static/background_images/trisha16.jpg')">
+        <h4 align="center">త్రిషా దేవత భక్తుడు కావడానికి<a href="{% url 'signup' %}">Signup</a>చేసుకోండి</h4>
+        <div class="row">
+            <div class="col-4" style="border-style:groove;height:820px;">
+                <marquee direction="right" behavior="alternate"><h4 style="color:magenta;font-style: inherit;"class="mt-2">త్రిషా అమ్మవారి ఆలయం</h4></marquee>
+                 <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_01.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_02.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_03.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_04.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_05.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_06.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_07.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_08.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_09.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_10.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_11.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_12.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_13.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_14.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_15.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_16.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_17.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_18.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_19.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_20.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_21.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_22.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_23.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_24.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_25.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_26.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_27.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_28.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_29.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_30.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_31.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_32.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_33.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_34.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_35.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                <div class="mySlide mt-1">
+                    <img src="{% static 'gallery_images/god_36.jpg' %}" width=100% height="550px">
+                    <div align="center">భగవాన్ త్రిషా దేవి</div>
+                </div>
+                 <div class="row">
+                     <div class="col-5" style="position:relative;top:70px;">
+                         <img src="{% static 'Devotees/devotee_01.png' %}" width=60% height="120px">
+                     </div>
+                      <div class="col-4" style="position:relative;right:30px;">
+                    <img src="{% static 'sticker_images/goddess_anjle.png' %}" width=100% height="190px">
+                     </div>
+                     <div class="col-3" style="position:relative;top:75px;">
+                         <img src="{% static 'Devotees/devotee_02.png' %}" width=100% height="120px">
+                     </div>
+                </div>
+               </div>
+                <div class="col-5">
+                    <img src="{% static 'background_images/goddess_07.jpg' %}" width=100%>
+                    <div class="row">
+                        <div class="col-6">
+                            <h2 style="font-family:TimeNewRoman;font-size:30px;">Trisha is Goddess</h2>
+                        </div>
+                        <div class="col-6">
+                                <h2 style="font-family:TimeNewRoman;font-size:25px;position:relative;left:35px;">ఓం త్రిషాయ నమః</h2>
+                        </div>
+                    </div>
+                    <h5 style="font-family:verdana;position:relative;top:40px;font-size:17px;">An Angel from Heaven</h5>
+                    <div class="row">
+                        <div class="col-5" style="position:relative;top:83px;right:15px;">
+                            <img src="{% static 'Devotees/devotee_04.png' %}" width=100% height="170px">
+                        </div>
+                        <div class="col-4"style="position:relative;top:-69px;right:60px;">
+                            <img src="{% static 'Devotional/goddess_amman.png' %}" width=140% height="300px">
+                        </div>
+                        <div class="col-3" style="z-index:5;position:relative;top:70px;right:30px;">
+                         <img src="{% static 'Devotees/devotee_03.png' %}" width=130% height="160px">
+                        </div>
+                    </div>
+                    <video style="margin-top:-10px;position:relative;top:-60px;" id="trisha1" controls="" loop=""  unmuted="" autoplay="" width=100% >
+                    <source src="{% static 'videos/TrishaPadam.mp4' %}" type="video/mp4">
+                    </video>
+                    <div>
+
+                    </div>
+                </div>
+            <div class="col-3 chantingpart" style="border-style:groove;background-color:green;height:820px;">
+<h2 align="center" style="color:red;margin-top:35px"> త్రిషాదేవి స్త్రోత్రములు<img src="{% static 'background_images/goddess_05.jpg' %}" width="45px" height="60px"></h2><hr color="yellow">
+<marquee direction="up"><h4 style="text-align:center;height:620px">
+ॐ భగవతే శ్రీ ఆదిపరాశక్తి త్రిషా కృష్ణన్ దేవి నమో నమః
+<br/><br/>
+ॐ శ్రీ త్రిషా దేవీ భవాని జగజ్జనని నమో నమః<br/><br/>
+ॐ అఖిలాండకోటి బ్రహ్మాండ నాయకి త్రిషాదేవీ నమో నమః<br/><br/>
+ॐ విద్యాదేవీ సరస్వతి త్రిషా దేవీ నమోస్తుతే
+<br/><br/>
+ॐ త్రిషా రుద్రాయ నమః
+<br/><br/>
+ॐ త్రిషా పరమేశ్వరి నమః
+<br/><br/>
+ॐ నమో భగవతే త్రిషా విశ్వరూపిణే నమః<br/><br/>
+ॐ శ్రీ పరాశక్తి అమ్మాన్ త్రిషా భగవతే నమో నమః<br/><br/>
+ॐ త్రిలోక సుందరి  త్రిషా దేవి  అష్టసిద్ధి నమోస్తుతే<br/><br/>
+ॐ త్రిలోక పాలిని మహా అమ్మన్ త్రిషా దేవి నమోస్తుతే<br/><br/>
+<font color="red">Goddess Trisha Devi Namostuthe</font><br/><font color="yellow">_______________</font>
+</h4></marquee>
+</div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
