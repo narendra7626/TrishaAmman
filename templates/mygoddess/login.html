@@ -3,10 +3,10 @@
 {% block title %}Trisha Amman Temple {% endblock %}
 {% block content %}
 <div class="text-white alert" style="color:white;background-image: url('http://127.0.0.1:8000/static/background_images/god_200.jpeg')">
-    <h4 align="center">త్రిషా అమ్మవారి ఆలయంలోకి ప్రవేశించండి</h4>
-    <div class="border p-4 col-6 offset-4 mt-3 rounded" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_11.jpg')">
-        <p class="text-white" id="message"></p>
+    <h4>త్రిషా అమ్మవారి ఆలయంలోకి ప్రవేశించండి</h4>
+    <div class="border col-md-3 table-responsive" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_11.jpg')">
         <h3 class="p-3">Login to Pray GoddessTrisha Amman</h3>
+        <p class="text-white" id="message"></p>
         <form method="POST" id="loginForm" class="m-3">
             {% csrf_token %}
             <table class="table" style="color:white;font-style:bold;">

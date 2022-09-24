@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <div class="text-primary alert" style="background-image: url('http://127.0.0.1:8000/static/background_images/trisha15.jpg');">
     <div class="row">
-        <div class="col-5 rounded border p-3" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_10.jpg');">
+        <div class="col-md-4 table-responsive rounded border" style="background-image: url('http://127.0.0.1:8000/static/background_images/goddess_10.jpg');">
             <p id="message"></p>
             <h3 clss="p-2">Book Yourself for Serving Goddess TrishaDevi</h3>
             <form method="POST" enctype="multipart/form-data" id="goddessForm">
@@ -16,12 +16,13 @@
             </form>
             <p>Register As Devotee <a href="{% url 'devotees' %}">Devotee</a></p>
         </div>
-        <div class="col-6 text-success mx-4" style="background-image: url('http://127.0.0.1:8000/static/background_images/god_01.jpg');border-style:groove;">
-            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+        <div class="col-md-8 table-responsive text-success" style="background-image: url('http://127.0.0.1:8000/static/background_images/god_01.jpg');border-style:groove;">
+            <table id="myTable" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th scope="col">S.no</th>
                 <th scope="col">Devotee</th>
+                <th scope="col">Devotee Image</th>
                 <th scope="col">Seva</th>
                 <th scope="col">Date</th>
                 <th scope="col">Edit</th>
@@ -33,13 +34,14 @@
             <tr>
                <th scope="row">{{forloop.counter}}</th>
                 <td class="devotee">{{seva.devotee}}</td>
+                <td><img src="{{seva.devotee.picture.url}}" height="80px"></td>
                 <td class="name">{{seva.name}}</td>
                 <td class="date">{{seva.date}}</td>
                 <td><button class="btn btn-secondary edit" data="{{seva.id}}">Edit</button></td>
               <td><button class="btn btn-danger delete" data="{{seva.id}}">Delete</button></td>
 
             </tr>
-                {% endfor %}
+        {% endfor %}
     </table>
         </div>
     </div>

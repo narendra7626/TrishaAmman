@@ -5,7 +5,7 @@
 {% block content %}
 <div class="text-danger alert" style="background-image: url('http://127.0.0.1:8000/static/background_images/god_01.jpg');">
     <div class="row">
-        <div class="col-6 rounded border p-3 offset-4" style="background-image: url('http://127.0.0.1:8000/static/background_images/trisha34.jpg');">
+        <div class="col-md-8 table-responsive rounded border" style="background-image: url('http://127.0.0.1:8000/static/background_images/trisha34.jpg');">
              <ul class="messages">
     {% for message in messages %}
     <li id="error_text" {% if message.tags %} class="bg-{{ message.tags }}"{% endif %}>{{ message }}</li>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="row mt-3">
-<div class="col-4">
+<div class="col-md-4">
                 <video id="trisha1" style="border-style:groove;" controls="" loop=""  muted="" autoplay="" width=100%>
                     <source src="{% static 'videos/GodTrishaqueen.mp4' %}" type="video/mp4">
                     </video>
@@ -28,15 +28,15 @@
                     <source src="{% static 'videos/devadevi.mp4' %}" type="video/mp4">
                     </video>
             </div>
-<div class="col-4">
-                <video id="trisha3" style="border-style:groove;" controls="" loop=""  unmuted="" autoplay="" width=100%>
+<div class="col-md-4">
+                <video id="trisha3" style="border-style:groove;" controls="" loop=""  muted="" autoplay="" width=100%>
                     <source src="{% static 'videos/TrishaPadam.mp4' %}" type="video/mp4">
                     </video>
                 <video style="margin-top:80px;border-style:groove;" id="trisha4" controls="" loop=""  muted="" autoplay="" width=100%>
                     <source src="{% static 'videos/Trishadevi.mp4' %}" type="video/mp4">
                     </video>
             </div>
-<div class="col-4">
+<div class="col-md-4">
                 <video id="trisha5" style="border-style:groove;" controls="" loop=""  muted="" autoplay=""  width=100%>
                     <source src="{% static 'videos/GoddessTrishaWalk.mp4' %}" type="video/mp4">
                     </video>
@@ -44,12 +44,12 @@
             </div>
     </div>
 <div class="row mt-3">
-    <div class="col-6">
+    <div class="col-md-6">
         <video id="trisha6" style="border-style:groove;height:300px;" controls="" loop=""  muted="" autoplay=""  width=100%>
                     <source src="{% static 'videos/GoddessTrisha.mp4' %}" type="video/mp4">
                     </video>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <video id="trisha7" style="border-style:groove;height:300px;" controls="" loop=""  muted="" autoplay=""  width=100%>
                     <source src="{% static 'videos/TrishaBhagawathi.mp4' %}" type="video/mp4">
                     </video>

@@ -3,8 +3,8 @@
 {% block title %}Trisha Amman Temple {% endblock %}
 {% block content %}
 <div class="text-white alert" style="color:white;background-image: url('http://127.0.0.1:8000/static/background_images/trisha300.jpg')">
-    <h4 align="center">త్రిషా అమ్మవారికి భక్తుడయ్యే అదృష్టాన్ని పొందండి</h4>
-    <div class="border p-4 col-4 offset-4 mt-3 rounded" style="background-image: url('http://127.0.0.1:8000/static/background_images/devi.jpg')">
+    <h4>త్రిషా అమ్మవారికి భక్తుడయ్యే అదృష్టాన్ని పొందండి</h4>
+    <div class="border col-md-4 table-responsive" style="background-image: url('http://127.0.0.1:8000/static/background_images/devi.jpg')">
         {% if messages %}
     <ul class="messages">
     {% for message in messages %}
@@ -14,7 +14,7 @@
     {% endif %}
         <p class="text-white" id="message"></p>
         <h3 class="p-3">Became a GoddessTrisha Amman Devoteee</h3>
-        <form method="POST" id="signupForm" enctype="multipart/form-data" class="m-3">
+        <form method="POST" id="signupForm" enctype="multipart/form-data">
             {% csrf_token %}
             <table class="table" style="color:white;font-style:bold;">
                 <tr>
